@@ -1,0 +1,24 @@
+{
+  "name": "gitbook-plugin-detail-block",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Stefan Rimaila <stefan@rimaila.fi>",
+  "license": "MIT",
+  "engines": {
+    "gitbook": ">2.x.x"
+  },
+  "gitbook": {
+    "properties": {
+      "summary": {
+        "type": "string",
+        "title": "Title for the details element",
+        "default": ""
+      },
+      "open": {
+        "type": "boolean",
+        "title": "Whether the details element should be open or not",
+        "default": "false"
+      }
+    }
+  }
+}
