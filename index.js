@@ -5,6 +5,24 @@ module.exports = {
   },
 
   blocks: {
+    quote: {
+      process: function (block) {
+        const { kwargs } = block;
+        const { credit, href } = kwargs;
+        console.log({ block, kwargs });
+
+        return this.renderBlock('markdown', block.body.trim())
+          .then(function (renderedBody) {
+            console.log({ renderedBody });
+            return [
+              `<blockquote>`,
+              `<div class="block--quote__content">${renderedBody}</div>`
+              `<div class="block--quote__credit">— ${credit}</div>`,
+              `</blockquote>`,
+            ].join('\n');
+          });
+      },
+    },
     detail: {
       process: function (block) {
         const { kwargs } = block;
@@ -14,8 +32,8 @@ module.exports = {
           .then(function (renderedBody) {
             return [
               `<details class="block--details">`,
-              `  <summary>${summary}</summary>`,
-              `  ${renderedBody}`,
+              `  <summary class="block--details__summary">${summary}</summary>`,
+              `  <div class="block--details__content">${renderedBody}</div>`,
               `</details>`,
             ].join('\n');
           })
